@@ -38,9 +38,31 @@ input,textarea,select{font:inherit;color:var(--ink)}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 
 /* ---------- ekran: kurulum / giriş ---------- */
-.screen{min-height:100%;display:grid;place-items:center;padding:24px;
+.screen{min-height:100%;display:grid;place-items:center;padding:0;
   background:var(--wall) var(--girih);background-size:120px}
 .gate{width:min(420px,100%);background:var(--panel);border-radius:var(--r-lg);box-shadow:var(--shadow);padding:28px 26px 24px}
+.gate-wrap{display:grid;grid-template-columns:minmax(0,1fr) 420px;gap:48px;align-items:center;
+  width:min(1120px,100%);margin:0 auto;padding:28px 22px}
+.pitch{max-width:540px}
+.pitch h2{font-size:31px;line-height:1.24;margin:22px 0 14px;font-weight:700;letter-spacing:-.02em;color:var(--ink)}
+.pitch h2 em{font-style:normal;color:var(--kobalt)}
+.pitch-lead{color:var(--ink2);font-size:14.5px;line-height:1.7;margin:0 0 26px;max-width:460px}
+.trust{display:flex;flex-direction:column;gap:15px}
+.trust .t{display:flex;gap:13px;align-items:flex-start}
+.trust .ts{width:36px;height:36px;border-radius:10px;flex:0 0 auto;display:grid;place-items:center;
+  background:rgba(31,78,140,.08);color:var(--kobalt)}
+.trust .ts svg{width:18px;height:18px}
+.trust b{display:block;font-size:13.5px;margin-bottom:2px;color:var(--ink)}
+.trust p{margin:0;font-size:12.5px;color:var(--ink2);line-height:1.55}
+.pitch-foot{margin:28px 0 0;padding-top:18px;border-top:1px solid var(--line);
+  font-size:12px;color:var(--ink3)}
+.gate-brand{display:none}
+@media(max-width:980px){
+  .gate-wrap{grid-template-columns:1fr;gap:0;padding:18px 14px}
+  .pitch{display:none}
+  .gate{margin:0 auto}
+  .gate-brand{display:flex}
+}
 .brand{display:flex;align-items:center;gap:12px;margin-bottom:18px}
 .brand-mark{width:44px;height:44px;border-radius:12px;background:var(--kobalt);display:grid;place-items:center;color:#fff}
 .brand-mark svg{width:26px;height:26px}
@@ -67,7 +89,16 @@ input,textarea,select{font:inherit;color:var(--ink)}
 /* ---------- ana düzen ---------- */
 #main{display:flex;height:100dvh;overflow:hidden}
 #side{width:360px;flex:none;background:var(--panel);border-right:1px solid var(--line);display:flex;flex-direction:column;min-height:0}
-#chat{flex:1;display:flex;flex-direction:column;min-width:0;position:relative;background:var(--wall) var(--girih);background-size:120px}
+#chat{flex:1;display:flex;flex-direction:column;min-width:0;position:relative;background:var(--wall)}
+#chat::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:var(--duvar,var(--girih));background-size:auto;opacity:var(--duvarOp,1)}
+#chat>*{position:relative;z-index:1}
+.duvar-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:6px}
+.duvar-sec{border-radius:12px;overflow:hidden;border:2px solid transparent;cursor:pointer;background:var(--panel2)}
+.duvar-sec.on{border-color:var(--kobalt)}
+.duvar-on{height:62px;background-color:var(--wall);background-size:auto}
+.duvar-ad{font-size:11.5px;padding:6px 4px;text-align:center;color:var(--ink2)}
+.duvar-sec.on .duvar-ad{color:var(--kobalt);font-weight:600}
 .bar{display:flex;align-items:center;gap:8px;padding:10px 12px;min-height:60px;background:var(--panel);border-bottom:1px solid var(--line)}
 .ib{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;color:var(--ink2);flex:none;position:relative}
 .ib:hover{background:var(--panel2);color:var(--ink)}
@@ -299,8 +330,27 @@ audio{height:40px;max-width:260px;display:block}
 
 <!-- ============ GİRİŞ / KAYIT ============ -->
 <div id="auth" class="screen hidden">
+  <div class="gate-wrap">
+  <section class="pitch">
+    <div class="brand"><div class="brand-mark" data-icon="logo"></div>
+      <div><h1>SohbetHane</h1><p>ÖZEL SOHBET ODASI</p></div></div>
+    <h2>Herkes kendi dilinde yazar,<br><em>herkes kendi dilinde okur.</em></h2>
+    <p class="pitch-lead">Davetle açılan kapalı bir sohbet odası. Yazdığın mesaj karşı tarafa
+      onun dilinde ulaşır, sana gelen de senin dilinde görünür.</p>
+    <div class="trust">
+      <div class="t"><span class="ts" data-icon="shield"></span>
+        <div><b>Yalnızca davetliler</b><p>Kapıyı davet linki açar. Kod olmadan kimse kayıt olamaz, arayarak bulamaz.</p></div></div>
+      <div class="t"><span class="ts" data-icon="globe"></span>
+        <div><b>Anlık çeviri</b><p>Her sohbette gelen ve giden dili ayrı ayrı seçersin. Orijinal metin her mesajın altında durur.</p></div></div>
+      <div class="t"><span class="ts" data-icon="clock"></span>
+        <div><b>Süreli mesaj</b><p>Kendini imha eden ve ileri tarihli gönderim. Süre dolunca mesaj iki taraftan da silinir.</p></div></div>
+      <div class="t"><span class="ts" data-icon="close"></span>
+        <div><b>Engelleme</b><p>Engellediğin kişi sana yazamaz, arayamaz; durumunu göremez. Ona bildirim gitmez.</p></div></div>
+    </div>
+    <p class="pitch-foot">Sunucu ve veriler yalnızca bu odanın sahibine aittir.</p>
+  </section>
   <div class="gate">
-    <div class="brand"><div class="brand-mark" data-icon="logo"></div><div><h1>SohbetHane</h1><p>Her dilde, kendi dilinde konuş</p></div></div>
+    <div class="brand gate-brand"><div class="brand-mark" data-icon="logo"></div><div><h1>SohbetHane</h1><p>Her dilde, kendi dilinde konuş</p></div></div>
     <div class="tabs"><button id="tabLogin" class="on">Giriş yap</button><button id="tabReg">Kayıt ol</button></div>
     <div id="loginForm">
       <label class="field"><span>Kullanıcı adı veya e-posta</span><input id="lgUser" autocomplete="username"></label>
@@ -320,6 +370,7 @@ audio{height:40px;max-width:260px;display:block}
       <div class="err" id="rgErr"></div>
       <button class="btn primary block" id="rgBtn">Hesabı oluştur</button>
     </div>
+  </div>
   </div>
 </div>
 
@@ -465,6 +516,62 @@ const P = {
 };
 const svg = (n, cls='i') => `<svg class="${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${P[n]||''}</svg>`;
 function paintIcons(root=document){ root.querySelectorAll('[data-icon]').forEach(e=>{ if(!e.dataset.painted){ e.insertAdjacentHTML('afterbegin', svg(e.dataset.icon)); e.dataset.painted=1; } }); }
+
+/* ---------- duvar kağıtları ----------
+   Hepsi saf CSS; dışarıdan tek bir görsel inmez. */
+const DUVARLAR=[
+ ['girih','Girih',null],
+ ['romantik','Romantik',
+  "radial-gradient(820px 560px at 12% 0%,rgba(214,96,132,.30),transparent 62%),"+
+  "radial-gradient(700px 520px at 92% 100%,rgba(150,86,168,.26),transparent 62%),"+
+  "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='90'%3E%3Cpath d='M45 62c-9-7-17-13-17-21a8 8 0 0 1 15-4 8 8 0 0 1 15 4c0 8-8 14-17 21z' fill='%23C8436A' fill-opacity='0.10'/%3E%3C/svg%3E\")"],
+ ['gulbahcesi','Gül bahçesi',
+  "radial-gradient(700px 500px at 82% 8%,rgba(214,96,120,.26),transparent 60%),"+
+  "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cg fill='none' stroke='%23C8436A' stroke-opacity='0.13' stroke-width='1.2'%3E%3Ccircle cx='60' cy='60' r='7'/%3E%3Ccircle cx='60' cy='60' r='15'/%3E%3Ccircle cx='60' cy='60' r='23'/%3E%3C/g%3E%3C/svg%3E\")"],
+ ['mumisigi','Mum ışığı',
+  "radial-gradient(640px 640px at 50% 108%,rgba(224,158,74,.34),transparent 62%),"+
+  "radial-gradient(520px 420px at 10% 4%,rgba(198,120,60,.20),transparent 60%)"],
+ ['gece','Yıldızlı gece',
+  "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cg fill='%231F4E8C'%3E%3Ccircle cx='20' cy='30' r='1.4' fill-opacity='.35'/%3E%3Ccircle cx='96' cy='18' r='1' fill-opacity='.25'/%3E%3Ccircle cx='140' cy='62' r='1.5' fill-opacity='.3'/%3E%3Ccircle cx='58' cy='90' r='1.1' fill-opacity='.22'/%3E%3Ccircle cx='118' cy='128' r='1.3' fill-opacity='.28'/%3E%3C/g%3E%3C/svg%3E\"),"+
+  "radial-gradient(900px 600px at 70% 0%,rgba(44,99,173,.22),transparent 62%)"],
+ ['deniz','Deniz',
+  "radial-gradient(800px 560px at 18% 100%,rgba(43,154,148,.26),transparent 62%),"+
+  "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='40'%3E%3Cpath d='M0 26c15-12 30-12 45 0s30 12 45 0 30-12 45 0' fill='none' stroke='%232B9A94' stroke-opacity='.16' stroke-width='1.4'/%3E%3C/svg%3E\")"],
+ ['orman','Orman',
+  "radial-gradient(760px 520px at 86% 6%,rgba(72,142,104,.24),transparent 60%),"+
+  "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cpath d='M50 20c8 12 12 20 12 28a12 12 0 0 1-24 0c0-8 4-16 12-28z' fill='%232B9A94' fill-opacity='.10'/%3E%3C/svg%3E\")"],
+ ['hat','Hat sanatı',
+  "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cg fill='none' stroke='%23D69A2D' stroke-opacity='.18' stroke-width='1.4'%3E%3Cpath d='M20 90c14-34 42-46 58-28s-6 44-22 30 6-40 34-26'/%3E%3C/g%3E%3C/svg%3E\")"],
+ ['cini','Çini',
+  "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cg fill='none' stroke='%231F4E8C' stroke-opacity='.15' stroke-width='1.1'%3E%3Cpath d='M40 8 52 28 40 48 28 28z'/%3E%3Cpath d='M8 40 28 52 48 40 28 28z'/%3E%3C/g%3E%3C/svg%3E\")"],
+ ['kahve','Kahve',
+  "radial-gradient(700px 500px at 28% 8%,rgba(166,118,72,.22),transparent 60%),"+
+  "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='30' cy='30' r='2' fill='%23A67648' fill-opacity='.10'/%3E%3C/svg%3E\")"],
+ ['huzur','Huzur',
+  "radial-gradient(820px 560px at 50% 0%,rgba(43,154,148,.18),transparent 62%)"],
+ ['alacakaranlik','Alacakaranlık',
+  "radial-gradient(760px 540px at 18% 4%,rgba(124,86,176,.24),transparent 60%),"+
+  "radial-gradient(640px 520px at 94% 96%,rgba(200,67,106,.20),transparent 60%)"],
+ ['kagit','Eski kâğıt',
+  "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='6'%3E%3Cpath d='M0 6 6 0' stroke='%23A67648' stroke-opacity='.08' stroke-width='1'/%3E%3C/svg%3E\")"],
+ ['kar','Kar',
+  "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='110' height='110'%3E%3Cg fill='%231F4E8C' fill-opacity='.10'%3E%3Ccircle cx='18' cy='22' r='2.4'/%3E%3Ccircle cx='78' cy='44' r='1.7'/%3E%3Ccircle cx='46' cy='84' r='2.1'/%3E%3Ccircle cx='96' cy='96' r='1.5'/%3E%3C/g%3E%3C/svg%3E\")"],
+ ['duz','Düz', 'none']
+];
+const duvarBul = k => DUVARLAR.find(d=>d[0]===k) || DUVARLAR[0];
+function duvarKey(convId){ return 'sh_duvar_'+(convId||'genel'); }
+function duvarSecili(convId){
+  return localStorage.getItem(duvarKey(convId)) || localStorage.getItem('sh_duvar_genel') || 'girih';
+}
+function duvarUygula(convId){
+  const k = duvarSecili(convId);
+  const op = localStorage.getItem('sh_duvar_op') || '100';
+  const r = document.documentElement;
+  if(k==='girih'){ window.__setGirih(); r.style.setProperty('--duvar','var(--girih)'); }
+  else if(k==='duz'){ r.style.setProperty('--duvar','none'); }
+  else r.style.setProperty('--duvar', duvarBul(k)[2]);
+  r.style.setProperty('--duvarOp', (+op)/100);
+}
 
 /* girih duvar deseni */
 (function(){
@@ -692,7 +799,7 @@ function renderConvList(){
   const q=$('#convFilter').value.trim().toLocaleLowerCase('tr');
   const list=[...convs.values()].sort((a,b)=> new Date(b.last?.send_at||b.created_at) - new Date(a.last?.send_at||a.created_at));
   const box=$('#convList');
-  const rows=list.filter(c=>!q || (c.other.display_name||'').toLocaleLowerCase('tr').includes(q) || c.other.username.includes(q)).map(c=>`
+  const rows=list.filter(c=>!isBlk(c) && (!q || (c.other.display_name||'').toLocaleLowerCase('tr').includes(q) || c.other.username.includes(q))).map(c=>`
     <div class="conv${c.id===activeId?' on':''}${c.unread?' unread':''}" data-id="${c.id}">
       ${avatarHTML(c.other,'av',c.online)}
       <div class="conv-mid">
@@ -700,7 +807,8 @@ function renderConvList(){
         <div class="conv-bot"><span>${typingT.has(c.id)?'<i style="color:var(--turkuaz)">yazıyor…</i>':previewText(c)}</span>${c.unread?`<span class="badge">${c.unread}</span>`:''}</div>
       </div>
     </div>`).join('');
-  box.innerHTML = rows || `<div class="side-empty">${convs.size? 'Eşleşen sohbet yok.' : 'Henüz sohbetin yok. '+(me.is_admin?'Yönetim (kalkan simgesi) bölümünden davet linki oluşturup gönder ya da + ile kullanıcı adıyla sohbet başlat.':'+ ile kullanıcı adıyla sohbet başlat.')}</div>`;
+  const gizli=[...convs.values()].filter(isBlk).length;
+  box.innerHTML = (rows + (gizli?`<div class="side-empty" style="padding:14px 16px;text-align:left">${gizli} engellenen kişi gizlendi. Ayarlar → Engellenen kişiler bölümünden görebilirsin.</div>`:'')) || `<div class="side-empty">${convs.size? 'Eşleşen sohbet yok.' : 'Henüz sohbetin yok. '+(me.is_admin?'Yönetim (kalkan simgesi) bölümünden davet linki oluşturup gönder ya da + ile kullanıcı adıyla sohbet başlat.':'+ ile kullanıcı adıyla sohbet başlat.')}</div>`;
   box.querySelectorAll('.conv').forEach(el=>el.onclick=()=>openConv(el.dataset.id));
   updateTitle();
 }
@@ -848,7 +956,10 @@ async function toggleBlock(c){
   const ch=channels.get(c.id);
   if(was){ blocked.delete(c.other.id); try{ await ch?.track({at:Date.now()}); }catch{} toast(name+' engeli kaldırıldı'); }
   else { blocked.add(c.other.id); try{ await ch?.untrack(); }catch{} if(call && call.convId===c.id) hangup(); toast(name+' engellendi'); }
-  typingT.delete(c.id); renderConvList(); if(c.id===activeId) renderHeader(c);
+  typingT.delete(c.id);
+  if(!was && c.id===activeId){ activeId=null; localStorage.removeItem('sh_last_conv');
+    $('#main').classList.remove('in-chat'); $('#empty').classList.remove('hidden'); $('#chatView').classList.add('hidden'); }
+  renderConvList(); if(c.id===activeId) renderHeader(c);
 }
 function renderAll(c, toBottom){
   const box=$('#msgs'), inner=$('#msgsInner');
@@ -1219,18 +1330,57 @@ function settingsModal(){
     <div class="sec"><h4>Görünüm ve bildirim</h4>
       <div class="switch"><span>Koyu tema</span><input type="checkbox" id="stDark" ${theme==='dark'?'checked':''}></div>
       <div class="switch"><span>Masaüstü bildirimleri</span>${notif==='granted'?'<span class="note">Açık</span>':notif==='denied'?'<span class="note">Tarayıcıda engelli</span>':notif==='unsupported'?'<span class="note">Desteklenmiyor</span>':'<button class="btn" id="stNotif">Aç</button>'}</div></div>
+    <div class="sec"><h4>Duvar kağıdı</h4>
+      <div class="duvar-grid" id="stDuvar"></div>
+      <div class="switch" style="margin-top:12px"><span>Yoğunluk</span>
+        <input type="range" id="stDuvarOp" min="15" max="100" style="width:150px;accent-color:var(--kobalt)"></div>
+    </div>
+    <div class="sec"><h4>Engellenen kişiler</h4><div id="stBlocked"></div></div>
     <div class="sec"><h4>Şifre değiştir</h4><div class="inline"><input class="field" style="margin:0;padding:10px;border:1px solid var(--line);border-radius:10px;background:var(--panel)" type="password" id="stPw" placeholder="Yeni şifre"><button class="btn" id="stPwOk">Değiştir</button></div></div>
     <div class="sec"><button class="btn danger block" id="stOut">${svg('logout')} Çıkış yap</button></div>`, ()=>{
+    duvarCiz(); blokCiz();
     $('#stAvPick').onclick=()=>$('#fileAvatar').click();
     if($('#stAvDel')) $('#stAvDel').onclick=async()=>{ await sb.rpc('update_profile',{p_display:null,p_lang:null,p_avatar:'-'}); me.avatar_url=null; renderMe(); closeModal(); settingsModal(); };
     $('#stSave').onclick=async()=>{ const {error}=await sb.rpc('update_profile',{p_display:$('#stName').value,p_lang:$('#stLang').value,p_avatar:null}); if(error) return toast(errText(error));
       me.display_name=$('#stName').value.trim()||me.display_name; me.lang=$('#stLang').value; renderMe(); toast('Profil kaydedildi'); };
-    $('#stDark').onchange=e=>{ const t=e.target.checked?'dark':'light'; document.documentElement.dataset.theme=t; localStorage.setItem('sh_theme',t); window.__setGirih(); };
+    $('#stDark').onchange=e=>{ const t=e.target.checked?'dark':'light'; document.documentElement.dataset.theme=t; localStorage.setItem('sh_theme',t); window.__setGirih(); duvarUygula(activeId); duvarCiz(); };
     if($('#stNotif')) $('#stNotif').onclick=async()=>{ const p=await Notification.requestPermission(); toast(p==='granted'?'Bildirimler açıldı':'Bildirim izni verilmedi'); closeModal(); settingsModal(); };
     $('#stPwOk').onclick=async()=>{ const p=$('#stPw').value; if(p.length<6) return toast('Şifre en az 6 karakter'); const {error}=await sb.auth.updateUser({password:p}); if(error) return toast(errText(error)); $('#stPw').value=''; toast('Şifre değiştirildi'); };
     $('#stOut').onclick=async()=>{ await sb.auth.signOut(); localStorage.removeItem('sh_last_conv'); location.reload(); };
   });
 }
+function duvarCiz(){
+  const box=$('#stDuvar'); if(!box) return;
+  const sec=duvarSecili(activeId);
+  box.innerHTML=DUVARLAR.map(d=>{
+    const bg = d[0]==='girih' ? 'var(--girih)' : (d[0]==='duz' ? 'none' : d[2]);
+    return `<div class="duvar-sec${d[0]===sec?' on':''}" data-d="${d[0]}">
+      <div class="duvar-on" style="background-image:${bg}"></div>
+      <div class="duvar-ad">${esc(d[1])}</div></div>`;
+  }).join('');
+  box.querySelectorAll('[data-d]').forEach(n=>n.onclick=()=>{
+    // Duvar kağıdı tüm sohbetler için ortak tutulur
+    localStorage.setItem('sh_duvar_genel', n.dataset.d);
+    for(const c of convs.values()) localStorage.removeItem(duvarKey(c.id));
+    duvarUygula(activeId); duvarCiz();
+  });
+  const op=$('#stDuvarOp');
+  if(op){ op.value=localStorage.getItem('sh_duvar_op')||100;
+    op.oninput=()=>{ localStorage.setItem('sh_duvar_op', op.value); duvarUygula(activeId); }; }
+}
+function blokCiz(){
+  const box=$('#stBlocked'); if(!box) return;
+  const list=[...convs.values()].filter(isBlk);
+  if(!list.length){ box.innerHTML='<p class="note" style="margin:0">Engellenen kimse yok.</p>'; return; }
+  box.innerHTML=list.map(c=>`<div class="switch">
+    <span>${esc(c.other.display_name||c.other.username)} <small style="color:var(--ink3)">@${esc(c.other.username)}</small></span>
+    <button class="btn" data-ub="${c.id}">Engeli kaldır</button></div>`).join('');
+  box.querySelectorAll('[data-ub]').forEach(b=>b.onclick=async()=>{
+    const c=convs.get(b.dataset.ub); if(!c) return;
+    await toggleBlock(c); blokCiz();
+  });
+}
+
 async function uploadAvatar(f){
   if(!f) return; f=await shrinkImage(f); const path=`${me.id}/${Date.now()}.${(f.type.split('/')[1]||'jpg').replace('jpeg','jpg')}`;
   const {error}=await sb.storage.from('avatars').upload(path,f,{contentType:f.type,upsert:true}); if(error) return toast(errText(error));
@@ -1490,6 +1640,7 @@ function bindUI(){
    ===================================================================== */
 (async function boot(){
   const th=localStorage.getItem('sh_theme'); if(th){ document.documentElement.dataset.theme=th; window.__setGirih(); }
+  duvarUygula(null);
   paintIcons();
   cfg=getCfg();
   if(!cfg) return showSetup();
