@@ -35,22 +35,34 @@ a{color:var(--acc2);text-decoration:none}
 .msg-translate-btn:hover{opacity:1;color:var(--acc2)}
 .msg-translation{margin-top:.4rem;padding:.3rem .5rem;background:rgba(64,145,108,.08);border-left:2px solid var(--acc2);border-radius:0 6px 6px 0;font-size:.82rem;color:var(--txt2);line-height:1.4;font-style:italic}
 /* AUTH */
-#auth-screen{display:flex;align-items:center;justify-content:center;min-height:100vh;background:#0a0f0a;position:relative;overflow:hidden}
-#auth-screen::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(64,145,108,.18) 0%,transparent 70%),radial-gradient(ellipse 60% 80% at 80% 100%,rgba(45,106,79,.12) 0%,transparent 60%);pointer-events:none}
+#auth-screen{display:flex;align-items:center;justify-content:center;min-height:100vh;background:#060d08;position:relative;overflow:hidden}
+#auth-screen::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 100% 70% at 30% 50%,rgba(45,106,79,.25) 0%,transparent 60%),radial-gradient(ellipse 60% 80% at 80% 100%,rgba(64,145,108,.1) 0%,transparent 60%);pointer-events:none}
 .auth-particles{position:absolute;inset:0;pointer-events:none;overflow:hidden}
 .auth-particles span{position:absolute;width:2px;height:2px;background:rgba(64,145,108,.5);border-radius:50%;animation:float linear infinite}
 @keyframes float{0%{transform:translateY(100vh) translateX(0);opacity:0}10%{opacity:1}90%{opacity:.5}100%{transform:translateY(-10vh) translateX(var(--dx));opacity:0}}
-.auth-wrap{display:flex;width:min(900px,95vw);background:rgba(22,27,34,.8);backdrop-filter:blur(20px);border:1px solid rgba(64,145,108,.2);border-radius:20px;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,.6);position:relative;z-index:1}
-.auth-left{flex:1;padding:3rem;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(145deg,rgba(64,145,108,.1),rgba(45,106,79,.05));border-right:1px solid rgba(64,145,108,.1)}
-@media(max-width:600px){.auth-left{display:none}}
-.auth-brand{margin-bottom:2.5rem}
-.auth-brand-icon{width:64px;height:64px;background:linear-gradient(135deg,#2d6a4f,#40916c);border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin-bottom:1.2rem;box-shadow:0 8px 32px rgba(64,145,108,.3)}
-.auth-brand h1{font-size:2rem;font-weight:800;background:linear-gradient(135deg,#52b788,#95d5b2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:1px;margin-bottom:.4rem}
-.auth-brand p{color:rgba(139,148,158,.8);font-size:.9rem;line-height:1.5}
-.auth-features{display:flex;flex-direction:column;gap:.8rem}
-.auth-feat{display:flex;align-items:center;gap:.8rem;color:rgba(230,237,243,.7);font-size:.85rem}
-.auth-feat-icon{width:32px;height:32px;background:rgba(64,145,108,.15);border:1px solid rgba(64,145,108,.2);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0}
-.auth-right{width:380px;padding:2.5rem;display:flex;flex-direction:column;justify-content:center}
+.auth-wrap{display:flex;width:min(960px,96vw);background:rgba(13,17,23,.92);backdrop-filter:blur(24px);border:1px solid rgba(64,145,108,.18);border-radius:24px;overflow:hidden;box-shadow:0 40px 100px rgba(0,0,0,.7),0 0 0 1px rgba(255,255,255,.03);position:relative;z-index:1}
+.auth-left{flex:1;padding:3rem 2.5rem;display:flex;flex-direction:column;justify-content:space-between;background:linear-gradient(160deg,rgba(45,106,79,.18) 0%,rgba(13,17,23,0) 60%);border-right:1px solid rgba(64,145,108,.1);position:relative;overflow:hidden}
+.auth-left::after{content:'';position:absolute;top:-80px;right:-80px;width:280px;height:280px;background:radial-gradient(circle,rgba(64,145,108,.12),transparent 70%);pointer-events:none}
+@media(max-width:640px){.auth-left{display:none}}
+.auth-brand{margin-bottom:2rem}
+.auth-brand-icon{width:68px;height:68px;background:linear-gradient(135deg,#1b4332,#40916c);border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:2rem;margin-bottom:1.2rem;box-shadow:0 8px 32px rgba(64,145,108,.35),inset 0 1px 0 rgba(255,255,255,.1)}
+.auth-brand h1{font-size:2.2rem;font-weight:900;background:linear-gradient(135deg,#74c69d,#b7e4c7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:.5px;margin-bottom:.5rem}
+.auth-brand p{color:rgba(139,148,158,.85);font-size:.92rem;line-height:1.6}
+/* Floating chat preview */
+.auth-chat-preview{display:flex;flex-direction:column;gap:.6rem;margin-bottom:2rem}
+.auth-msg{max-width:82%;padding:.55rem .85rem;border-radius:14px;font-size:.82rem;line-height:1.45;animation:msgFloat .6s ease both}
+@keyframes msgFloat{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.auth-msg.other{background:rgba(33,38,45,.9);color:rgba(230,237,243,.85);border-bottom-left-radius:4px;align-self:flex-start}
+.auth-msg.own{background:rgba(27,67,50,.85);color:rgba(178,222,196,.9);border-bottom-right-radius:4px;align-self:flex-end}
+.auth-msg-lock{text-align:center;font-size:.72rem;color:rgba(64,145,108,.8);background:rgba(64,145,108,.08);border:1px solid rgba(64,145,108,.15);border-radius:20px;padding:.25rem .8rem;margin:.3rem auto;width:fit-content}
+/* Trust stats */
+.auth-trust{display:flex;gap:.6rem;flex-wrap:wrap}
+.auth-trust-badge{display:flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.04);border:1px solid rgba(64,145,108,.15);border-radius:8px;padding:.4rem .7rem;font-size:.74rem;color:rgba(139,148,158,.8)}
+.auth-trust-badge span:first-child{font-size:.85rem}
+.auth-features{display:flex;flex-direction:column;gap:.7rem}
+.auth-feat{display:flex;align-items:center;gap:.8rem;color:rgba(230,237,243,.7);font-size:.84rem}
+.auth-feat-icon{width:30px;height:30px;background:rgba(64,145,108,.12);border:1px solid rgba(64,145,108,.18);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0}
+.auth-right{width:390px;padding:2.8rem 2.5rem;display:flex;flex-direction:column;justify-content:center}
 @media(max-width:600px){.auth-right{width:100%;padding:2rem 1.5rem}}
 .auth-box{background:transparent;border:none;padding:0;width:100%}
 .auth-logo{text-align:center;margin-bottom:1.8rem;display:none}
@@ -81,6 +93,12 @@ a{color:var(--acc2);text-decoration:none}
 #sidebar{width:300px;background:var(--bg2);border-right:1px solid var(--brd);display:flex;flex-direction:column;flex-shrink:0}
 #sidebar-header{padding:.8rem 1rem;border-bottom:1px solid var(--brd);display:flex;align-items:center;gap:.5rem}
 #sidebar-header h2{flex:1;font-size:1rem;color:var(--acc2)}
+/* Sidebar sekmeler */
+#sidebar-tabs{display:flex;border-bottom:1px solid var(--brd);background:var(--bg2)}
+.s-tab{flex:1;padding:.55rem .2rem;background:none;color:var(--txt2);font-size:.68rem;font-weight:600;text-align:center;transition:.2s;border-bottom:2px solid transparent;display:flex;flex-direction:column;align-items:center;gap:.15rem}
+.s-tab:hover{color:var(--txt);background:rgba(255,255,255,.04)}
+.s-tab.active{color:var(--acc2);border-bottom-color:var(--acc2);background:rgba(64,145,108,.06)}
+.s-tab-icon{font-size:.95rem;line-height:1}
 .icon-btn{background:none;color:var(--txt2);padding:.4rem;border-radius:6px;font-size:1.1rem;transition:.2s}
 .icon-btn:hover{background:var(--bg3);color:var(--txt)}
 #user-search-wrap{padding:.5rem 1rem;border-bottom:1px solid var(--brd)}
@@ -282,15 +300,22 @@ hr{border:none;border-top:1px solid var(--brd);margin:.5rem 0}
     <div class="auth-brand">
       <div class="auth-brand-icon">💬</div>
       <h1>SohbetHane</h1>
-      <p>Özel, güvenli ve uçtan uca<br>şifreli mesajlaşma platformu</p>
+      <p>Mesajlarınız yalnızca size aittir.<br>Sunucu tek bir harf bile göremez.</p>
     </div>
-    <div class="auth-features">
-      <div class="auth-feat"><div class="auth-feat-icon">🔐</div>Uçtan uca şifreleme — sunucu mesajları görmez</div>
-      <div class="auth-feat"><div class="auth-feat-icon">👥</div>Grup ve birebir sohbet odaları</div>
-      <div class="auth-feat"><div class="auth-feat-icon">📎</div>Şifreli dosya ve sesli mesaj paylaşımı</div>
-      <div class="auth-feat"><div class="auth-feat-icon">⏱️</div>Süreli ve tek görüntülenebilir mesajlar</div>
-      <div class="auth-feat"><div class="auth-feat-icon">🛡️</div>Davetli sistem — sadece tanıdıklarınla</div>
-      <div class="auth-feat"><div class="auth-feat-icon">🌐</div>Otomatik çeviri — her mesajı anında Türkçeye çevir</div>
+    <!-- Canlı sohbet önizleme -->
+    <div class="auth-chat-preview">
+      <div class="auth-msg other" style="animation-delay:.1s">Merhaba! Uygulama nasıl? 👋</div>
+      <div class="auth-msg own" style="animation-delay:.35s">Harika — tamamen şifreli! 🔐</div>
+      <div class="auth-msg other" style="animation-delay:.6s">Kimse okuyamıyor mu gerçekten?</div>
+      <div class="auth-msg own" style="animation-delay:.85s">Sunucu bile göremez, söz ✓</div>
+      <div class="auth-msg-lock" style="animation-delay:1.1s">🔒 Bu konuşma uçtan uca şifreli</div>
+    </div>
+    <!-- Güven rozetleri -->
+    <div class="auth-trust">
+      <div class="auth-trust-badge"><span>🔒</span><span>AES-256-GCM</span></div>
+      <div class="auth-trust-badge"><span>🛡️</span><span>ECDH-P256</span></div>
+      <div class="auth-trust-badge"><span>👁️‍🗨️</span><span>Sıfır veri kaydı</span></div>
+      <div class="auth-trust-badge"><span>🌐</span><span>Otomatik çeviri</span></div>
     </div>
   </div>
   <!-- Sağ panel -->
@@ -338,6 +363,11 @@ hr{border:none;border-top:1px solid var(--brd);margin:.5rem 0}
       <button class="icon-btn" title="Yeni sohbet" onclick="openModal('new-room-modal')">✏️</button>
       <button class="icon-btn" title="Davet" onclick="openModal('invite-modal')">✉️</button>
       <button class="icon-btn" title="Ayarlar" onclick="openModal('settings-modal')">⚙️</button>
+    </div>
+    <div id="sidebar-tabs">
+      <button class="s-tab active" id="stab-dm" onclick="switchSideTab(this,'dm')"><span class="s-tab-icon">💬</span>Sohbetler</button>
+      <button class="s-tab" id="stab-grup" onclick="switchSideTab(this,'grup')"><span class="s-tab-icon">🏠</span>Odalar</button>
+      <button class="s-tab" id="stab-duvar" onclick="switchSideTab(this,'duvar')"><span class="s-tab-icon">📰</span>Zaman Tüneli</button>
     </div>
     <div id="user-search-wrap">
       <input id="user-search" placeholder="Kullanıcı ara..." oninput="searchUsers(this.value)">
@@ -453,6 +483,7 @@ hr{border:none;border-top:1px solid var(--brd);margin:.5rem 0}
     <hr>
   </div>
   <div style="display:flex;flex-direction:column;gap:.5rem;margin-top:.8rem">
+    <button id="pm-tunel-btn" class="btn btn-secondary btn-sm hidden" onclick="openUserTunel()" style="color:var(--acc2);border-color:rgba(64,145,108,.3)">📰 Zaman Tünelie Bak</button>
     <button id="pm-block-btn" class="btn btn-secondary btn-sm" onclick="toggleBlock()"></button>
     <button id="pm-mute-btn" class="btn btn-secondary btn-sm" onclick="toggleMute()"></button>
     <button id="pm-convert-btn" class="btn btn-secondary btn-sm hidden" onclick="convertToGroup()">Bu sohbeti gruba dönüştür</button>
@@ -894,11 +925,27 @@ async function loadRooms(){
   });
   renderRoomList(S.rooms);
 }
+function switchSideTab(el, tab){
+  S.sideTab=tab;
+  document.querySelectorAll('.s-tab').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');
+  renderRoomList(S.rooms||[]);
+}
 async function renderRoomList(rooms){
   const list = document.getElementById('room-list');
-  if(!rooms.length){ list.innerHTML='<div class="empty-state"><span class="icon">💬</span><p>Henüz sohbet yok</p></div>'; return; }
+  // Filter by active tab
+  const tab = S.sideTab || 'dm';
+  let filtered = (rooms||[]).filter(r=>{
+    if(tab==='dm') return r.tur==='dm';
+    if(tab==='grup') return r.tur==='grup'||r.tur==='arsiv';
+    if(tab==='duvar') return r.tur==='duvar';
+    return true;
+  });
+  const emptyIcons={'dm':'💬','grup':'🏠','duvar':'📰'};
+  const emptyTexts={'dm':'Henüz sohbet yok','grup':'Henüz oda yok','duvar':'Zaman tüneli boş'};
+  if(!filtered.length){ list.innerHTML=`<div class="empty-state"><span class="icon">${emptyIcons[tab]||'💬'}</span><p>${emptyTexts[tab]||'Boş'}</p></div>`; return; }
   list.innerHTML='';
-  for(const r of rooms){
+  for(const r of filtered){
     const el = document.createElement('div');
     el.className='room-item'+(S.currentRoom?.id===r.id?' active':'');
     el.dataset.id=r.id;
@@ -917,11 +964,9 @@ async function renderRoomList(rooms){
       const icon = r.tur==='arsiv'?'📁':r.tur==='duvar'?'📰':'👥';
       avatarHtml=`<span>${icon}</span>`;
     }
-    // Badge
+    // Badge (sekmeler sayesinde sadece arsiv'e özel)
     let badge='';
-    if(r.tur==='duvar') badge='<span class="room-badge badge-duvar">DUVAR</span>';
-    else if(r.tur==='arsiv') badge='<span class="room-badge badge-arsiv">ARŞİV</span>';
-    else if(r.tur==='grup') badge='<span class="room-badge badge-grup">GRUP</span>';
+    if(r.tur==='arsiv') badge='<span class="room-badge badge-arsiv">ARŞİV</span>';
     // Last message preview
     let preview='';
     if(r._lastMsg){
@@ -1751,6 +1796,9 @@ async function openPersonModal(){
     document.getElementById('pm-pending-btn').classList.add('hidden');
     document.getElementById('pm-block-btn').dataset.uid=p.id;
     document.getElementById('pm-mute-btn').dataset.uid=p.id;
+    const tunelBtn=document.getElementById('pm-tunel-btn');
+    tunelBtn.classList.remove('hidden');
+    tunelBtn.dataset.uid=p.id;
   } else {
     // Group/archive/wall
     const members=await getRoomMembers(room.id);
@@ -1759,6 +1807,7 @@ async function openPersonModal(){
     document.getElementById('pm-lastseen').textContent='';
     document.getElementById('pm-secnum-wrap').style.display='none';
     document.getElementById('pm-convert-btn').classList.add('hidden');
+    document.getElementById('pm-tunel-btn').classList.add('hidden');
     const av=document.getElementById('pm-avatar');
     av.textContent=room.tur==='arsiv'?'📁':room.tur==='duvar'?'📰':'👥';
     av.style.background='var(--acc)';
@@ -1771,6 +1820,35 @@ async function openPersonModal(){
   }
 }
 document.getElementById('chat-header-info').onclick=openPersonModal;
+async function openUserTunel(){
+  const uid=document.getElementById('pm-tunel-btn').dataset.uid;
+  if(!uid) return;
+  closeModal('person-modal');
+  // Zaman Tüneli sekmesine geç
+  const tabEl=document.getElementById('stab-duvar');
+  if(tabEl) switchSideTab(tabEl,'duvar');
+  // O kullanıcının duvar odasını bul
+  const tunelRoom=S.rooms?.find(r=>r.tur==='duvar'&&r._otherUserId===uid);
+  if(tunelRoom){ openRoom(tunelRoom); return; }
+  // Yoksa kendi duvar odalarından ara
+  const p=await getProfile(uid);
+  const name=p?.goruntu_adi||p?.kullanici_adi||'Tünel';
+  // Kullanıcının duvar odalarını yükle
+  const {data:theirMems}=await sb.from('oda_uyeleri').select('oda_id').eq('kullanici_id',uid);
+  if(theirMems){
+    const ids=theirMems.map(m=>m.oda_id);
+    const {data:duvarOdalar}=await sb.from('odalar').select('*').in('id',ids).eq('tur','duvar');
+    if(duvarOdalar?.length){
+      const room=duvarOdalar[0];
+      if(!S.rooms) S.rooms=[];
+      if(!S.rooms.find(r=>r.id===room.id)) S.rooms.push(room);
+      renderRoomList(S.rooms);
+      openRoom(room);
+      return;
+    }
+  }
+  toast('Bu kullanıcının Zaman Tüneli henüz oluşturulmamış.','info');
+}
 async function toggleBlock(){
   const uid=document.getElementById('pm-block-btn').dataset.uid;
   if(!uid) return;
